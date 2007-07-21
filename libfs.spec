@@ -1,4 +1,11 @@
-%define libfs %mklibname fs 6
+%define name		libfs
+%define version		1.0.0
+%define release		%mkrel 4
+
+%define libname		%mklibname fs 6
+%define develname	%mklibname fs -d
+%define staticname	%mklibname fs -s -d
+
 Name: libfs
 Summary:  Library Interface to the X Font Server
 Version: 1.0.0
@@ -18,34 +25,35 @@ Library Interface to the X Font Server
 
 #-----------------------------------------------------------
 
-%package -n %{libfs}
+%package -n %{libname}
 Summary:  Library Interface to the X Font Server
 Group: Development/X11
 Conflicts: libxorg-x11 < 7.0
 Provides: %{name} = %{version}
 
-%description -n %{libfs}
+%description -n %{libname}
 Library Interface to the X Font Server
 
 #-----------------------------------------------------------
 
-%package -n %{libfs}-devel
+%package -n %{develname}
 Summary: Development files for %{name}
 Group: Development/X11
-Requires: %{libfs} = %{version}
+Requires: %{libname} = %{version}
 Requires: x11-proto-devel >= 1.0.0
-Provides: libfs-devel = %{version}-%{release}
+Provides: %{name}-devel = %{version}-%{release}
 Conflicts: libxorg-x11-devel < 7.0
+Obsoletes: %{mklibname fs 6 -d}
 
-%description -n %{libfs}-devel
+%description -n %{develname}
 Development files for %{name}
 
-%pre -n %{libfs}-devel
+%pre -n %{develname}
 if [ -h %{_includedir}/X11 ]; then
 	rm -f %{_includedir}/X11
 fi
 
-%files -n %{libfs}-devel
+%files -n %{develname}
 %defattr(-,root,root)
 %{_libdir}/libFS.so
 %{_libdir}/libFS.la
@@ -54,17 +62,18 @@ fi
 
 #-----------------------------------------------------------
 
-%package -n %{libfs}-static-devel
+%package -n %{staticname}
 Summary: Static development files for %{name}
 Group: Development/X11
-Requires: %{libfs}-devel = %{version}
-Provides: libfs-static-devel = %{version}-%{release}
+Requires: %{develname} = %{version}
+Provides: %{name}-static-devel = %{version}-%{release}
 Conflicts: libxorg-x11-static-devel < 7.0
+Obsoletes: %{mklibname fs 6 -s -d}
 
-%description -n %{libfs}-static-devel
+%description -n %{staticname}
 Static development files for %{name}
 
-%files -n %{libfs}-static-devel
+%files -n %{staticname}
 %defattr(-,root,root)
 %{_libdir}/libFS.a
 
@@ -86,10 +95,10 @@ rm -rf %{buildroot}
 %clean
 rm -rf %{buildroot}
 
-%post -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+%post -n %{libname} -p /sbin/ldconfig
+%postun -n %{libname} -p /sbin/ldconfig
 
-%files -n %{libfs}
+%files -n %{libname}
 %defattr(-,root,root)
 %{_libdir}/libFS.so.6
 %{_libdir}/libFS.so.6.0.0
