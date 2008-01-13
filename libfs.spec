@@ -1,6 +1,6 @@
 %define name		libfs
 %define version		1.0.0
-%define release		%mkrel 4
+%define release		%mkrel 5
 
 %define libname		%mklibname fs 6
 %define develname	%mklibname fs -d
@@ -9,7 +9,7 @@
 Name: libfs
 Summary:  Library Interface to the X Font Server
 Version: 1.0.0
-Release: %mkrel 3
+Release: %mkrel 4
 Group: Development/X11
 License: MIT
 URL: http://xorg.freedesktop.org
