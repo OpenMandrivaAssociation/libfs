@@ -1,7 +1,3 @@
-%define name		libfs
-%define version		1.0.0
-%define release		%mkrel 5
-
 %define libname		%mklibname fs 6
 %define develname	%mklibname fs -d
 %define staticname	%mklibname fs -s -d
@@ -9,16 +5,16 @@
 Name: libfs
 Summary:  Library Interface to the X Font Server
 Version: 1.0.0
-Release: %mkrel 4
+Release: %mkrel 5
 Group: Development/X11
 License: MIT
 URL: http://xorg.freedesktop.org
 Source0: http://xorg.freedesktop.org/releases/individual/lib/libFS-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-root
 
-BuildRequires: x11-proto-devel >= 1.0.0
-BuildRequires: x11-util-macros >= 1.0.1
-BuildRequires: x11-xtrans-devel >= 1.0.0
+BuildRequires: x11-util-macros	>= 1.1.5
+BuildRequires: x11-xtrans-devel	>= 1.0.4
+BuildRequires: x11-proto-devel	>= 7.3
 
 %description
 Library Interface to the X Font Server
