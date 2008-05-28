@@ -21,7 +21,7 @@ BuildRequires: x11-util-macros >= 1.0.1
 BuildRequires: x11-xtrans-devel >= 1.0.0
 
 %description
-Library Interface to the X Font Server
+Libfs is a library interface to the X Font Server.
 
 #-----------------------------------------------------------
 
@@ -32,7 +32,7 @@ Conflicts: libxorg-x11 < 7.0
 Provides: %{name} = %{version}
 
 %description -n %{libname}
-Library Interface to the X Font Server
+Libfs is a library interface to the X Font Server.
 
 #-----------------------------------------------------------
 
@@ -46,7 +46,7 @@ Conflicts: libxorg-x11-devel < 7.0
 Obsoletes: %{mklibname fs 6 -d}
 
 %description -n %{develname}
-Development files for %{name}
+Development files for %{name}.
 
 %pre -n %{develname}
 if [ -h %{_includedir}/X11 ]; then
