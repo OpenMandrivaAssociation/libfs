@@ -1,6 +1,6 @@
 %define name		libfs
-%define version		1.0.2
-%define release		%mkrel 2
+%define version		1.0.3
+%define release		%mkrel 1
 
 %define libname		%mklibname fs 6
 %define develname	%mklibname fs -d
