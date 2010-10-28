@@ -91,6 +91,7 @@ Static development files for %{name}
 %install
 rm -rf %{buildroot}
 %makeinstall_std
+rm -f %{buildroot}%_datadir/doc/libFS/FSlib.txt
 
 %clean
 rm -rf %{buildroot}
@@ -104,6 +105,7 @@ rm -rf %{buildroot}
 
 %files -n %{libname}
 %defattr(-,root,root)
+%doc doc/FSlib.txt
 %{_libdir}/libFS.so.6
 %{_libdir}/libFS.so.6.0.0
 
