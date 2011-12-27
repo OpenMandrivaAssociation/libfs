@@ -33,8 +33,8 @@ Group: Development/X11
 Requires: %{libname} = %{version}
 Provides: %{name}-devel = %{version}-%{release}
 Conflicts: libxorg-x11-devel < 7.0
-Obsoletes: %{_libn}fs6-devel
-Obsoletes: %{_libn}fs-static-devel
+Obsoletes: %{_lib}fs6-devel
+Obsoletes: %{_lib}fs-static-devel
 
 %description -n %{develname}
 Development files for %{name}.
