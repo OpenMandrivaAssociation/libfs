@@ -1,20 +1,15 @@
-%define name		libfs
-%define version		1.0.3
-%define release		%mkrel 2
-
-%define libname		%mklibname fs 6
+%define major 6
+%define libname		%mklibname fs %{major}
 %define develname	%mklibname fs -d
-%define staticname	%mklibname fs -s -d
 
-Name: %name
+Name: libfs
 Summary:  Library Interface to the X Font Server
-Version: %version
-Release: %release
+Version: 1.0.3
+Release: 3
 Group: Development/X11
 License: MIT
 URL: http://xorg.freedesktop.org
 Source0: http://xorg.freedesktop.org/releases/individual/lib/libFS-%{version}.tar.bz2
-BuildRoot: %{_tmppath}/%{name}-root
 
 BuildRequires: x11-proto-devel >= 1.0.0
 BuildRequires: x11-util-macros >= 1.0.1
@@ -22,8 +17,6 @@ BuildRequires: x11-xtrans-devel >= 1.0.0
 
 %description
 Libfs is a library interface to the X Font Server.
-
-#-----------------------------------------------------------
 
 %package -n %{libname}
 Summary:  Library Interface to the X Font Server
@@ -34,16 +27,14 @@ Provides: %{name} = %{version}
 %description -n %{libname}
 Libfs is a library interface to the X Font Server.
 
-#-----------------------------------------------------------
-
 %package -n %{develname}
 Summary: Development files for %{name}
 Group: Development/X11
 Requires: %{libname} = %{version}
-Requires: x11-proto-devel >= 1.0.0
 Provides: %{name}-devel = %{version}-%{release}
 Conflicts: libxorg-x11-devel < 7.0
-Obsoletes: %{mklibname fs 6 -d}
+Obsoletes: %{_libn}fs6-devel
+Obsoletes: %{_libn}fs-static-devel
 
 %description -n %{develname}
 Development files for %{name}.
@@ -53,38 +44,14 @@ if [ -h %{_includedir}/X11 ]; then
 	rm -f %{_includedir}/X11
 fi
 
-%files -n %{develname}
-%defattr(-,root,root)
-%{_libdir}/libFS.so
-%{_libdir}/libFS.la
-%{_libdir}/pkgconfig/libfs.pc
-%{_includedir}/X11/fonts/FSlib.h
-
-#-----------------------------------------------------------
-
-%package -n %{staticname}
-Summary: Static development files for %{name}
-Group: Development/X11
-Requires: %{develname} = %{version}
-Provides: %{name}-static-devel = %{version}-%{release}
-Conflicts: libxorg-x11-static-devel < 7.0
-Obsoletes: %{mklibname fs 6 -s -d}
-
-%description -n %{staticname}
-Static development files for %{name}
-
-%files -n %{staticname}
-%defattr(-,root,root)
-%{_libdir}/libFS.a
-
-#-----------------------------------------------------------
-
 %prep
-%setup -q -n libFS-%{version}
+%setup -qn libFS-%{version}
 
 %build
-%configure2_5x	--x-includes=%{_includedir}\
-		--x-libraries=%{_libdir}
+%configure2_5x \
+	--disable-static \
+	--x-includes=%{_includedir} \
+	--x-libraries=%{_libdir}
 
 %make
 
@@ -93,20 +60,12 @@ rm -rf %{buildroot}
 %makeinstall_std
 rm -f %{buildroot}%_datadir/doc/libFS/FSlib.txt
 
-%clean
-rm -rf %{buildroot}
-
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
-
 %files -n %{libname}
-%defattr(-,root,root)
 %doc doc/FSlib.txt
-%{_libdir}/libFS.so.6
-%{_libdir}/libFS.so.6.0.0
+%{_libdir}/libFS.so.%{major}*
 
+%files -n %{develname}
+%{_libdir}/libFS.so
+%{_libdir}/pkgconfig/libfs.pc
+%{_includedir}/X11/fonts/FSlib.h
 
