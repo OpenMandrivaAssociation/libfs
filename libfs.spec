@@ -13,6 +13,7 @@ Source0:	http://xorg.freedesktop.org/releases/individual/lib/libFS-%{version}.ta
 BuildRequires:	x11-proto-devel >= 1.0.0
 BuildRequires:	x11-util-macros >= 1.0.1
 BuildRequires:	x11-xtrans-devel >= 1.0.0
+Patch0:		libfs-aarch64.patch
 
 %description
 Libfs is a library interface to the X Font Server.
@@ -44,6 +45,7 @@ fi
 
 %prep
 %setup -qn libFS-%{version}
+%apply_patches
 
 %build
 %configure2_5x \
