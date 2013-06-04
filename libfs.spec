@@ -1,10 +1,10 @@
-%define major	6
+%define major 6
 %define libname %mklibname fs %{major}
 %define devname %mklibname fs -d
 
 Summary:	Library Interface to the X Font Server
 Name:		libfs
-Version:	1.0.4
+Version:	1.0.5
 Release:	1
 Group:		Development/X11
 License:	MIT
