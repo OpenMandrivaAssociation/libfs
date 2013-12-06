@@ -5,7 +5,7 @@
 Summary:	Library Interface to the X Font Server
 Name:		libfs
 Version:	1.0.5
-Release:	4
+Release:	5
 Group:		Development/X11
 License:	MIT
 Url:		http://xorg.freedesktop.org
