@@ -4,8 +4,8 @@
 
 Summary:	Library Interface to the X Font Server
 Name:		libfs
-Version:	1.0.7
-Release:	5
+Version:	1.0.8
+Release:	1
 Group:		Development/X11
 License:	MIT
 Url:		http://xorg.freedesktop.org
@@ -35,14 +35,8 @@ Obsoletes:	%{_lib}fs-static-devel < 1.0.4
 %description -n %{devname}
 Development files for %{name}.
 
-%pre -n %{devname}
-if [ -h %{_includedir}/X11 ]; then
-	rm -f %{_includedir}/X11
-fi
-
 %prep
-%setup -qn libFS-%{version}
-%apply_patches
+%autosetup -n libFS-%{version}
 
 %build
 %configure \
@@ -50,10 +44,10 @@ fi
 	--x-includes=%{_includedir} \
 	--x-libraries=%{_libdir}
 
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 rm -f %{buildroot}%{_datadir}/doc/libFS/FSlib.txt
 
 %files -n %{libname}
@@ -64,4 +58,3 @@ rm -f %{buildroot}%{_datadir}/doc/libFS/FSlib.txt
 %{_libdir}/libFS.so
 %{_libdir}/pkgconfig/libfs.pc
 %{_includedir}/X11/fonts/FSlib.h
-
