@@ -4,12 +4,12 @@
 
 Summary:	Library Interface to the X Font Server
 Name:		libfs
-Version:	1.0.8
+Version:	1.0.9
 Release:	1
 Group:		Development/X11
 License:	MIT
 Url:		http://xorg.freedesktop.org
-Source0:	http://xorg.freedesktop.org/releases/individual/lib/libFS-%{version}.tar.bz2
+Source0:	http://xorg.freedesktop.org/releases/individual/lib/libFS-%{version}.tar.xz
 BuildRequires:	pkgconfig(xorg-macros)
 BuildRequires:	pkgconfig(xproto)
 BuildRequires:	pkgconfig(xtrans)
